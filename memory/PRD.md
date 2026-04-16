@@ -1,3 +1,314 @@
+# Anas Optical Store Website - Product Requirements Document
+
+**Last Updated:** December 16, 2025  
+**Project Type:** Premium Optical Store Business Website  
+**Tech Stack:** React, FastAPI, MongoDB
+
+---
+
+## Project History
+
+### Phase 1: Lakhpati Hospital Website (Completed - Dec 16, 2025)
+- Healthcare website with appointment booking
+
+---
+
+# ANAS OPTICAL STORE - WEBSITE SPECIFICATION
+
+## Original Problem Statement
+
+Create a premium, high-converting business website for "Anas Optical" - an optical store in Surat that sells:
+- Eyeglasses (Men's, Women's, Kids)
+- Contact Lenses
+- Perfumes & Attar
+- Eye testing services
+
+**Key Requirements:**
+- Modern, premium UI with blue + black color scheme
+- High conversion optimization (calls, WhatsApp, walk-ins)
+- Trust signals prominently displayed
+- Product showcase with professional images
+- Mobile-first responsive design
+- SEO optimized for Surat optical searches
+
+---
+
+## Business Information
+
+**Store Details:**
+- Name: Anas Optical
+- Tagline: "Clear Vision Starts Here – Trusted Optical Store in Surat"
+- Address: Al-Hamd Palace, Nanavat Main Road, Near Lakhpati Hospital, Nanavat, Surat, Gujarat – 395003
+- Phone: +91 73592 01616
+- Hours: 10:30 AM – 9:00 PM (Monday to Sunday)
+- Rating: 4.6 stars
+- Specialties: Eyeglasses, Contact Lenses, Perfumes, Attar
+
+---
+
+## What's Been Implemented ✅
+
+### Phase 1: Anas Optical Frontend (December 16, 2025)
+
+#### Components Created:
+
+1. **OpticalHeader** (`/app/frontend/src/components/OpticalHeader.jsx`)
+   - Sticky navigation with dark theme (slate-900 to blue-900 gradient)
+   - Scrolls to white background on scroll
+   - Mobile responsive hamburger menu
+   - Call Now CTA button
+
+2. **OpticalHero** (`/app/frontend/src/components/OpticalHero.jsx`)
+   - Large headline with urgency banner ("Visit Today – Special Offers Available!")
+   - Trust signals: 4.6 rating, Near Lakhpati Hospital, Operating hours
+   - Triple CTA: Call Now, Book Eye Test, Chat on WhatsApp
+   - Statistics: 500+ Frame Styles, 1000+ Customers, 10+ Years, 24/7 WhatsApp
+   - Background image overlay
+
+3. **OpticalAbout** (`/app/frontend/src/components/OpticalAbout.jsx`)
+   - Store description and trust-building content
+   - Professional image from optical store
+   - Key points: Authentic Products, Customer Satisfaction, Expert Guidance
+   - Floating rating card overlay
+
+4. **OpticalServices** (`/app/frontend/src/components/OpticalServices.jsx`)
+   - 6 service cards with hover animations
+   - Services: Eye Testing, Eyeglasses, Contact Lenses, Vision Consultation, **Perfumes & Attar**, Lens Replacement
+   - Icon-based display with gradient backgrounds
+
+5. **OpticalFeatures** (`/app/frontend/src/components/OpticalFeatures.jsx`)
+   - Why Choose Us section
+   - 4 features: High-Quality Lenses, Affordable Pricing, Expert Guidance, Convenient Location
+   - Gradient background cards with hover effects
+
+6. **OpticalProducts** (`/app/frontend/src/components/OpticalProducts.jsx`)
+   - 6 product categories with **professional images from Unsplash/Pexels**
+   - Categories: Men's Frames, Women's Frames, Kids Collection, Contact Lenses, Premium Perfumes, Traditional Attar
+   - Image overlay with gradient
+   - "Explore Collection" CTA on each card
+
+7. **OpticalTestimonials** (`/app/frontend/src/components/OpticalTestimonials.jsx`)
+   - 4 customer reviews with 5-star ratings
+   - Gradient card backgrounds
+   - Avatar initials
+
+8. **OpticalCTA** (`/app/frontend/src/components/OpticalCTA.jsx`)
+   - Bold conversion section with blue gradient background
+   - Large phone number display
+   - Dual CTAs: Call Now (white button), Book Appointment (black button)
+   - Trust badge at bottom
+
+9. **OpticalContact** (`/app/frontend/src/components/OpticalContact.jsx`)
+   - Contact information cards with icons
+   - Google Maps embed
+   - Quick contact form (Name, Phone, Requirement)
+   - Form validation and toast notification (FRONTEND ONLY)
+
+10. **OpticalFAQ** (`/app/frontend/src/components/OpticalFAQ.jsx`)
+    - 5 FAQs in accordion format
+    - Smooth animations
+    - Common questions about services
+
+11. **OpticalFooter** (`/app/frontend/src/components/OpticalFooter.jsx`)
+    - 4-column layout: About, Quick Links, Services, Contact
+    - Social media icons (Facebook, Instagram, Twitter)
+    - SEO keywords in footer text
+
+12. **OpticalWhatsApp** (`/app/frontend/src/components/OpticalWhatsApp.jsx`)
+    - Floating WhatsApp button (bottom-right)
+    - Pulsing animation
+    - Pre-filled message for optical store
+    - Tooltip on hover
+
+#### Data Layer:
+- **Mock Data** (`/app/frontend/src/data/opticalMock.js`)
+  - Store information
+  - 6 services (including perfumes & attar)
+  - 4 features
+  - 6 product categories with **real professional images**
+  - 4 testimonials
+  - 5 FAQs
+  - Requirement dropdown options
+
+#### Design Implementation:
+- **Premium color scheme:** Blue (#2563eb), Black/Slate (#0f172a, #1e293b), White (#ffffff)
+- **Professional images integrated:**
+  - Hero background: Optical store interior
+  - About section: Customer in optical store
+  - Men's frames: Stylish eyeglasses
+  - Women's frames: Elegant eyewear
+  - Kids frames: Colorful collection
+  - Perfumes: Designer bottles (Chanel, Jimmy Choo)
+  - Attar: Luxury fragrance collection
+- **Gradient usage:** Blue-to-black gradients for premium feel
+- **Mobile responsive:** Tested at 375px and 1920px
+- **Smooth animations:** Hover effects, scale transforms, shadow transitions
+- **Conversion optimization:**
+  - Sticky header with Call button
+  - Multiple CTAs throughout page
+  - WhatsApp floating button
+  - Urgency indicators
+  - Large phone number displays
+
+---
+
+## Prioritized Backlog
+
+### P0 - Backend Integration (Next Phase)
+1. **Contact Form API**
+   - POST `/api/optical/contact` - Store contact requests
+   - Schema: name, phone, requirement, timestamp
+   - WhatsApp notification to store owner
+   - SMS confirmation to customer
+
+2. **Product Inquiry System**
+   - Track which product categories get most clicks
+   - Store customer interest data
+
+3. **Database Models**
+   - Contact inquiries collection
+   - Product interest tracking
+
+### P1 - Enhanced Features
+1. **WhatsApp Business Integration**
+   - Automated responses
+   - Product catalog on WhatsApp
+   - Order inquiries via WhatsApp
+
+2. **Virtual Try-On**
+   - AR-based frame try-on
+   - Camera integration for mobile
+
+3. **Price List Management**
+   - Admin panel to manage product prices
+   - Display prices on frontend
+
+### P2 - E-commerce Features
+1. **Online Store**
+   - Shopping cart
+   - Online ordering
+   - Payment gateway (Razorpay)
+   - Delivery tracking
+
+2. **Customer Portal**
+   - Order history
+   - Prescription uploads
+   - Reorder contact lenses
+
+3. **Inventory Management**
+   - Stock tracking
+   - Low stock alerts
+   - Automated reorder
+
+---
+
+## API Contracts (For Backend Implementation)
+
+### POST /api/optical/contact
+**Request Body:**
+```json
+{
+  "name": "string (required)",
+  "phone": "string (required, 10 digits)",
+  "requirement": "string (required, enum)",
+  "timestamp": "datetime (auto-generated)"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "We'll contact you shortly!",
+  "contactId": "uuid"
+}
+```
+
+### GET /api/optical/contacts (Admin)
+**Response:**
+```json
+{
+  "contacts": [
+    {
+      "id": "uuid",
+      "name": "string",
+      "phone": "string",
+      "requirement": "string",
+      "createdAt": "datetime"
+    }
+  ]
+}
+```
+
+---
+
+## Mock Data Currently Used
+
+All data is stored in `/app/frontend/src/data/opticalMock.js`:
+
+### Products with Real Images:
+1. **Men's Frames** - https://images.unsplash.com/photo-1766998224439-9f048ed4d687
+2. **Women's Frames** - https://images.unsplash.com/photo-1755519024779-ff6e5016db0b
+3. **Kids Collection** - https://images.pexels.com/photos/13430474/pexels-photo-13430474.jpeg
+4. **Contact Lenses** - https://images.pexels.com/photos/12700452/pexels-photo-12700452.jpeg
+5. **Premium Perfumes** - https://images.pexels.com/photos/7703038/pexels-photo-7703038.jpeg
+6. **Traditional Attar** - https://images.pexels.com/photos/35930230/pexels-photo-35930230.jpeg
+
+### Services (6 items):
+- Eye Testing, Eyeglasses, Contact Lenses, Vision Consultation, Perfumes & Attar, Lens Replacement
+
+### Customer Reviews (4 testimonials):
+- All 5-star ratings from local Surat customers
+
+**Note:** Contact form currently logs to console. Backend integration needed for WhatsApp notifications.
+
+---
+
+## Design Guidelines Followed
+
+✅ Premium blue + black + white color scheme  
+✅ Professional product images integrated  
+✅ Mobile-first responsive design  
+✅ Conversion-focused CTAs throughout  
+✅ Trust signals prominently displayed  
+✅ Smooth animations and transitions  
+✅ SEO-optimized content  
+✅ WhatsApp integration ready  
+✅ Urgency indicators for conversions  
+✅ Clean, modern, premium UI  
+
+---
+
+## Next Action Items - Anas Optical
+
+1. **Immediate:**
+   - Verify all product images load correctly
+   - Test WhatsApp button functionality
+   - Update social media links
+
+2. **Backend Phase:**
+   - Build contact form API with WhatsApp notifications
+   - Create admin panel to view inquiries
+   - Add analytics tracking
+
+3. **Marketing:**
+   - Set up Google My Business
+   - Enable WhatsApp Business features
+   - Create social media presence
+
+---
+
+- Eye care and maternity services
+- Frontend MVP completed
+
+### Phase 2: Anas Optical Store Website (Current - Dec 16, 2025)
+- Premium optical store website
+- Located near Lakhpati Hospital
+- Eyewear, contact lenses, perfumes & attar
+- Frontend MVP completed
+
+---
+
 # Lakhpati Hospital Website - Product Requirements Document
 
 **Last Updated:** December 16, 2025  

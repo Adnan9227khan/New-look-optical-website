@@ -1,32 +1,36 @@
 import React from "react";
 import "@/App.css";
-import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
-import { Services } from "@/components/Services";
-import { WhyChooseUs } from "@/components/WhyChooseUs";
-import { Testimonials } from "@/components/Testimonials";
-import { Contact } from "@/components/Contact";
-import { FAQ } from "@/components/FAQ";
-import { Footer } from "@/components/Footer";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { OpticalHeader } from "@/components/OpticalHeader";
+import { OpticalHero } from "@/components/OpticalHero";
+import { OpticalAbout } from "@/components/OpticalAbout";
+import { OpticalServices } from "@/components/OpticalServices";
+import { OpticalFeatures } from "@/components/OpticalFeatures";
+import { OpticalProducts } from "@/components/OpticalProducts";
+import { OpticalTestimonials } from "@/components/OpticalTestimonials";
+import { OpticalCTA } from "@/components/OpticalCTA";
+import { OpticalContact } from "@/components/OpticalContact";
+import { OpticalFAQ } from "@/components/OpticalFAQ";
+import { OpticalFooter } from "@/components/OpticalFooter";
+import { OpticalWhatsApp } from "@/components/OpticalWhatsApp";
 import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <OpticalHeader />
       <main>
-        <Hero />
-        <About />
-        <Services />
-        <WhyChooseUs />
-        <Testimonials />
-        <Contact />
-        <FAQ />
+        <OpticalHero />
+        <OpticalAbout />
+        <OpticalServices />
+        <OpticalFeatures />
+        <OpticalProducts />
+        <OpticalTestimonials />
+        <OpticalCTA />
+        <OpticalContact />
+        <OpticalFAQ />
       </main>
-      <Footer />
-      <WhatsAppButton />
+      <OpticalFooter />
+      <OpticalWhatsApp />
       <Toaster />
     </div>
   );
