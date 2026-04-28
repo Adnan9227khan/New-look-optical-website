@@ -33,7 +33,7 @@ export const OpticalHero = () => {
         <div className="text-center">
           {/* Urgency Banner */}
           <div className="inline-flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 animate-pulse">
-            🔥 Visit Today – Special Offers Available!
+            🔥 New Frames Arrived – Visit Us Today!
           </div>
 
           {/* Main Heading */}
@@ -73,12 +73,6 @@ export const OpticalHero = () => {
               <Phone className="w-5 h-5" />
               Call Now
             </a>
-            <button
-              onClick={scrollToContact}
-              className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            >
-              Book Eye Test
-            </button>
             <button
               onClick={handleWhatsApp}
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
