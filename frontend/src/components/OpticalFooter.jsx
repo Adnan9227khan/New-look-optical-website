@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, MapPin, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Instagram } from 'lucide-react';
 import { storeInfo } from '../data/opticalMock';
 
 export const OpticalFooter = () => {
