@@ -15,7 +15,7 @@ export const OpticalContact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -27,7 +27,7 @@ export const OpticalContact = () => {
       console.log('Contact Form Data:', formData);
       toast({
         title: "Request Received!",
-        description: "We'll contact you shortly. Thank you for choosing Anas Optical!",
+        description: "We'll contact you shortly. Thank you for choosing Anas Optical!"
       });
       setFormData({ name: '', phone: '', requirement: '' });
       setIsSubmitting(false);
@@ -55,10 +55,10 @@ export const OpticalContact = () => {
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 mb-1">Phone Number</h4>
-                <a 
-                  href={`tel:${storeInfo.phone}`} 
-                  className="text-blue-600 hover:text-blue-700 font-medium text-lg"
-                >
+                <a
+                  href={`tel:${storeInfo.phone}`}
+                  className="text-blue-600 hover:text-blue-700 font-medium text-lg">
+
                   {storeInfo.phone}
                 </a>
                 <p className="text-sm text-gray-600 mt-1">Call anytime during business hours</p>
@@ -103,8 +103,8 @@ export const OpticalContact = () => {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Anas Optical Location"
-              ></iframe>
+                title="Anas Optical Location">
+              </iframe>
             </div>
           </div>
 
@@ -126,8 +126,8 @@ export const OpticalContact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white"
-                  placeholder="Enter your full name"
-                />
+                  placeholder="Enter your full name" />
+
               </div>
 
               <div>
@@ -143,8 +143,8 @@ export const OpticalContact = () => {
                   required
                   pattern="[0-9]{10}"
                   className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white"
-                  placeholder="10-digit mobile number"
-                />
+                  placeholder="10-digit mobile number" />
+
               </div>
 
               <div>
@@ -157,34 +157,34 @@ export const OpticalContact = () => {
                   value={formData.requirement}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white"
-                >
-                  {requirementOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white">
+
+                  {requirementOptions.map((option) =>
+                  <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
-                  ))}
+                  )}
                 </select>
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue-600 to-gray-900 hover:from-blue-700 hover:to-black text-white py-6 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                {isSubmitting ? (
-                  <>
+                className="w-full bg-gradient-to-r from-blue-600 to-gray-900 hover:from-blue-700 hover:to-black text-white py-6 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+
+                {isSubmitting ?
+                <>
                     <Loader2 className="w-5 h-5 animate-spin" />
                     Submitting...
-                  </>
-                ) : (
-                  'Submit Request'
-                )}
+                  </> :
+
+                'Submit Request'
+                }
               </Button>
             </form>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
