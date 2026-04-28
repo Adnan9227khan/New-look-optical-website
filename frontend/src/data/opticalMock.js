@@ -7,9 +7,9 @@ export const storeInfo = {
   phone: "+919173355559",
   email: "newlookopticals5555@gmail.com",
   address: {
-    full: "Al-Hamd Palace, Nanavat Main Road, Near Lakhpati Hospital, Nanavat, Surat, Gujarat – 395003",
-    street: "Al-Hamd Palace, Nanavat Main Road",
-    landmark: "Near Lakhpati Hospital",
+    full: "G-1, Ground Floor, Vimalnath Apartment, Nanavat Main Road, Opp. Lakhpati Hospital, Surat, Gujarat – 395003",
+    street: "G-1, Ground Floor, Vimalnath Apartment",
+    landmark: "Opp. Lakhpati Hospital, Nanavat Main Road",
     area: "Nanavat",
     city: "Surat",
     state: "Gujarat",
