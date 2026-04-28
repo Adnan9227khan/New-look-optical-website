@@ -6,6 +6,20 @@
     min-height: 100vh;
 }
 
+/* Hide Emergent branding - more specific selectors */
+[class*="emergent"],
+[id*="emergent"],
+a[href*="emergent.sh"],
+div[style*="position: fixed"][style*="bottom: 20px"][style*="right: 20px"],
+div[style*="z-index: 9999"],
+button:has-text("Made with Emergent"),
+a:has-text("Emergent") {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
 /* Smooth transitions for interactive elements */
 button,
 a {

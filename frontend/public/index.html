@@ -28,6 +28,42 @@
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
+    <style>
+        /* Hide Emergent branding badge */
+        body > div[style*="position: fixed"],
+        body > a[style*="position: fixed"],
+        div[style*="z-index: 9999"],
+        a[href*="emergent"] {
+            display: none !important;
+        }
+    </style>
+    <script>
+        // Remove Emergent branding after page load
+        window.addEventListener('load', function() {
+            function hideBranding() {
+                // Find and hide any fixed position elements that might be the badge
+                const fixedElements = document.querySelectorAll('body > *[style*="position: fixed"]');
+                fixedElements.forEach(el => {
+                    if (el.textContent && el.textContent.includes('Emergent')) {
+                        el.style.display = 'none';
+                    }
+                });
+                
+                // Hide links to emergent.sh
+                const emergentLinks = document.querySelectorAll('a[href*="emergent"]');
+                emergentLinks.forEach(el => el.style.display = 'none');
+            }
+            
+            // Run immediately and after a delay
+            hideBranding();
+            setTimeout(hideBranding, 1000);
+            setTimeout(hideBranding, 3000);
+            
+            // Watch for new elements being added
+            const observer = new MutationObserver(hideBranding);
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+    </script>
         <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
