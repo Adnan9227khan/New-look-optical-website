@@ -1,5 +1,6 @@
 import React from "react";
 import "@/App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { OpticalHeader } from "@/components/OpticalHeader";
 import { OpticalHero } from "@/components/OpticalHero";
 import { OpticalAbout } from "@/components/OpticalAbout";
@@ -12,11 +13,13 @@ import { OpticalContact } from "@/components/OpticalContact";
 import { OpticalFAQ } from "@/components/OpticalFAQ";
 import { OpticalFooter } from "@/components/OpticalFooter";
 import { OpticalWhatsApp } from "@/components/OpticalWhatsApp";
+import { AdminLogin } from "@/components/AdminLogin";
+import { AdminDashboard } from "@/components/AdminDashboard";
 import { Toaster } from "@/components/ui/sonner";
 
-function App() {
+const MainWebsite = () => {
   return (
-    <div className="App">
+    <>
       <OpticalHeader />
       <main>
         <OpticalHero />
@@ -31,7 +34,21 @@ function App() {
       </main>
       <OpticalFooter />
       <OpticalWhatsApp />
-      <Toaster />
+    </>
+  );
+};
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainWebsite />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        </Routes>
+        <Toaster />
+      </BrowserRouter>
     </div>
   );
 }
