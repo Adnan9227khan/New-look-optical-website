@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Look Opticals - Premium Eyewear & Perfumes in Surat</title>
+    <meta name="description" content="Trusted optical store in Surat for premium eyeglasses, contact lenses, and authentic perfumes. Quality products at affordable prices.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --blue-900: #1e3a8a;
+            --slate-900: #0f172a;
+            --green-500: #22c55e;
+            --green-600: #16a34a;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(to right, var(--slate-900), var(--blue-900), var(--slate-900));
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .header.scrolled .logo {
+            color: var(--gray-900);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header.scrolled .logo-icon {
+            background: #dbeafe;
+        }
+
+        .logo-text h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .header.scrolled .nav-menu a {
+            color: var(--gray-600);
+        }
+
+        .nav-menu a:hover {
+            color: var(--blue-600);
+        }
+
+        .call-btn {
+            background: var(--blue-600);
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .call-btn:hover {
+            background: var(--blue-700);
+            transform: scale(1.05);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .header.scrolled .mobile-menu-btn {
+            color: var(--gray-900);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 20px 80px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .urgency-banner {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--blue-600);
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trust-signals {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .trust-badge {
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--blue-600);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-700);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            background: var(--green-500);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--green-600);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blue-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dbeafe 0%, #f0fdf4 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Products Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .product-cta {
+            background: linear-gradient(to right, var(--blue-600), var(--slate-900));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--blue-600), var(--slate-900));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .stars {
+            color: #fbbf24;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #dbeafe 0%, #f0fdf4 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--blue-600);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, #dbeafe 0%, #f0fdf4 100%);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gray-900);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--blue-600);
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--gray-900);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--gray-50);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--slate-900), var(--blue-900), var(--slate-900));
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-section h3 {
+            color: #93c5fd;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links button {
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            cursor: pointer;
+            padding: 0;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+
+        .footer-links button:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--blue-600);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: var(--blue-700);
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #cbd5e1;
+            font-size: 0.875rem;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 999;
+            text-decoration: none;
+            animation: pulse-wa 2s infinite;
+        }
+
+        @keyframes pulse-wa {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .products-grid,
+            .services-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Background Colors */
+        .bg-white { background: white; }
+        .bg-gray-50 { background: var(--gray-50); }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#home" class="logo">
+                <div class="logo-icon">👓</div>
+                <div class="logo-text">
+                    <h1>New Look Opticals</h1>
+                    <p>Premium Eyewear & Perfumes</p>
+                </div>
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <a href="tel:+919173355559" class="call-btn">
+                📞 Call Now
+            </a>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="urgency-banner">
+                🔥 New Frames Arrived – Visit Us Today!
+            </div>
+
+            <h1>
+                Clear Vision Starts Here
+                <span>Trusted Optical Store in Surat</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Premium Eyeglasses, Contact Lenses & Expert Eye Care Near You
+            </p>
+
+            <div class="trust-signals">
+                <div class="trust-badge">
+                    ⭐ <strong>4.6</strong> Rating
+                </div>
+                <div class="trust-badge">
+                    📍 Opp. Lakhpati Hospital, Nanavat Main Road
+                </div>
+                <div class="trust-badge">
+                    🕒 10:30 AM – 9:00 PM
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="tel:+919173355559" class="btn-primary">
+                    📞 Call Now
+                </a>
+                <a href="https://wa.me/919173355559?text=Hello%20New%20Look%20Opticals!%20I'm%20interested%20in%20your%20eyewear%20services." class="btn-primary btn-secondary" target="_blank">
+                    💬 Chat on WhatsApp
+                </a>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Frame Styles</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">WhatsApp Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">About New Look Opticals</h2>
+            <p class="section-subtitle">Your trusted partner for clear vision and premium eyewear</p>
+
+            <div style="max-width: 800px; margin: 0 auto; text-align: center; line-height: 1.8; color: #4b5563;">
+                <p style="margin-bottom: 1rem;">
+                    At New Look Opticals, we are committed to providing high-quality eyewear and exceptional customer service. Located near Lakhpati Hospital in Nanavat, Surat, we have been serving the community with premium eyeglasses, contact lenses, and authentic perfumes.
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    Our experienced opticians understand that choosing the right eyewear is about more than just vision correction—it's about style, comfort, and confidence. We offer a curated selection of frames from budget-friendly to designer brands.
+                </p>
+                <p>
+                    With a 4.6-star rating and hundreds of satisfied customers, New Look Opticals has become the go-to optical store in Nanavat and surrounding areas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section bg-gray-50">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Complete eye care and lifestyle solutions under one roof</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">👁️</div>
+                    <h3>Eye Testing</h3>
+                    <p>Professional eye examinations by certified optometrists. Get your vision tested with latest equipment.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">👓</div>
+                    <h3>Eyeglasses</h3>
+                    <p>Stylish & affordable frames for men, women, and kids. Wide range of designer brands and budget-friendly options.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">👁️‍🗨️</div>
+                    <h3>Contact Lenses</h3>
+                    <p>Premium contact lenses from trusted brands. Daily, weekly, and monthly disposable options available.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">✅</div>
+                    <h3>Vision Consultation</h3>
+                    <p>Expert guidance on eye care, lens selection, and frame fitting. Personalized recommendations for your needs.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Perfumes & Attar</h3>
+                    <p>Authentic premium perfumes and traditional attar. Wide collection of international and local fragrances.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>Lens Replacement</h3>
+                    <p>Quick lens replacement and repair services. Upgrade your existing frames with new lenses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Our Collection</h2>
+            <p class="section-subtitle">Explore our wide range of premium eyewear and fragrances</p>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1766998224439-9f048ed4d687" alt="Men's Frames">
+                        <div class="product-overlay">
+                            <h3 style="font-size: 1.5rem; font-weight: 700;">Men's Frames</h3>
+                            <p>Stylish eyeglasses for men</p>
+                        </div>
+                    </div>
+                    <div class="product-cta">Explore Collection →</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1755519024779-ff6e5016db0b" alt="Women's Frames">
+                        <div class="product-overlay">
+                            <h3 style="font-size: 1.5rem; font-weight: 700;">Women's Frames</h3>
+                            <p>Elegant eyewear for women</p>
+                        </div>
+                    </div>
+                    <div class="product-cta">Explore Collection →</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/13430474/pexels-photo-13430474.jpeg" alt="Kids Collection">
+                        <div class="product-overlay">
+                            <h3 style="font-size: 1.5rem; font-weight: 700;">Kids Collection</h3>
+                            <p>Colorful & durable frames for kids</p>
+                        </div>
+                    </div>
+                    <div class="product-cta">Explore Collection →</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/12700452/pexels-photo-12700452.jpeg" alt="Contact Lenses">
+                        <div class="product-overlay">
+                            <h3 style="font-size: 1.5rem; font-weight: 700;">Contact Lenses</h3>
+                            <p>Premium quality contact lenses</p>
+                        </div>
+                    </div>
+                    <div class="product-cta">Explore Collection →</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/7703038/pexels-photo-7703038.jpeg" alt="Premium Perfumes">
+                        <div class="product-overlay">
+                            <h3 style="font-size: 1.5rem; font-weight: 700;">Premium Perfumes</h3>
+                            <p>Designer & luxury fragrances</p>
+                        </div>
+                    </div>
+                    <div class="product-cta">Explore Collection →</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.pexels.com/photos/35930230/pexels-photo-35930230.jpeg" alt="Traditional Attar">
+                        <div class="product-overlay">
+                            <h3 style="font-size: 1.5rem; font-weight: 700;">Traditional Attar</h3>
+                            <p>Authentic Arabian attar collection</p>
+                        </div>
+                    </div>
+                    <div class="product-cta">Explore Collection →</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section bg-gray-50">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real reviews from our valued customers</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">RP</div>
+                        <div>
+                            <h4>Rajesh Patel</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>"Best optical shop in Nanavat! Got my glasses at great price. The staff is very helpful and professional. Highly recommend!"</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">PP</div>
+                        <div>
+                            <h4>Priya Patel</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>"Amazing collection of frames! Found perfect glasses for myself and my daughter. Quality is excellent and prices are reasonable."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">MK</div>
+                        <div>
+                            <h4>Mohammed Khan</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>"Very satisfied with the contact lenses I purchased. Genuine products and good service. Will definitely come back!"</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">AD</div>
+                        <div>
+                            <h4>Anjali Desai</h4>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p>"Perfect location near Lakhpati Hospital. Got my eye test done and new glasses. Quick service and excellent quality!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-white">
+        <div class="container">
+            <h2 class="section-title">Visit Us or Get in Touch</h2>
+            <p class="section-subtitle">We're here to help you with all your eyewear needs</p>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Phone Number</h4>
+                            <a href="tel:+919173355559" style="color: #2563eb; font-weight: 600; text-decoration: none;">+91 9173355559</a>
+                            <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">Call anytime during business hours</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Address</h4>
+                            <p style="color: #4b5563;">
+                                Vimalnath Apartment<br>
+                                Opp. Lakhpati Hospital, Nanavat Main Road<br>
+                                Nanavat, Surat<br>
+                                Gujarat – 395003
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Store Hours</h4>
+                            <p style="color: #4b5563;">
+                                10:30 AM – 9:00 PM<br>
+                                Monday to Friday
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Google Maps -->
+                    <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.8744556565657!2d72.82763131492656!3d21.195890885917893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDExJzQ1LjIiTiA3MsKwNDknMzkuNCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                            width="100%" 
+                            height="300" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="form-container">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Quick Contact Form</h3>
+                    <p style="color: #6b7280; margin-bottom: 1.5rem;">Fill the form and we'll get back to you soon!</p>
+
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label>Your Name *</label>
+                            <input type="text" name="name" required placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" name="phone" required pattern="[0-9]{10}" placeholder="10-digit mobile number">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Your Requirement *</label>
+                            <select name="requirement" required>
+                                <option value="">Select Requirement</option>
+                                <option value="eye-test">Eye Testing</option>
+                                <option value="eyeglasses">Eyeglasses</option>
+                                <option value="contact-lens">Contact Lenses</option>
+                                <option value="perfumes">Perfumes/Attar</option>
+                                <option value="consultation">General Consultation</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-primary" style="width: 100%;">
+                            Submit Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section bg-gray-50">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Find answers to common questions about our services</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do you offer eye testing services?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we provide professional eye testing services with certified optometrists using modern equipment. Eye tests are available throughout our working hours.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What brands of lenses and frames do you provide?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        We offer a wide range of branded and budget-friendly options including designer frames, premium lenses from trusted manufacturers, and quality contact lenses from international brands.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What are your store timings?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        We are open from 10:30 AM to 9:00 PM, Monday through Friday. We're here to serve you with quality eyewear and excellent service!
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do you sell contact lenses?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we have a wide selection of contact lenses including daily, weekly, and monthly disposables from trusted brands. We also provide guidance on proper usage and care.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do you offer home delivery?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we offer local delivery services within Surat. You can also order via WhatsApp and we'll arrange delivery at your doorstep.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>New Look Opticals</h3>
+                <p>Your trusted optical store in Surat for premium eyewear, contact lenses, and authentic perfumes. Quality products at affordable prices.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><button onclick="scrollToSection('home')">Home</button></li>
+                    <li><button onclick="scrollToSection('about')">About</button></li>
+                    <li><button onclick="scrollToSection('services')">Services</button></li>
+                    <li><button onclick="scrollToSection('products')">Products</button></li>
+                    <li><button onclick="scrollToSection('contact')">Contact</button></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <p>Eye Testing</p>
+                <p>Eyeglasses</p>
+                <p>Contact Lenses</p>
+                <p>Vision Consultation</p>
+                <p>Perfumes & Attar</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📞 +91 9173355559</p>
+                <p>✉️ newlookopticals5555@gmail.com</p>
+                <p>📍 Nanavat, Surat</p>
+                
+                <h3 style="margin-top: 1.5rem;">Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/newlookopticals55559/" target="_blank" class="social-btn">📷</a>
+                </div>
+                <p style="margin-top: 0.5rem;">@newlookopticals55559</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 New Look Opticals. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.75rem;">Best Optical Shop in Surat | Eyeglasses Store Nanavat Surat | Contact Lens Store Surat</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919173355559?text=Hello%20New%20Look%20Opticals!%20I'm%20interested%20in%20your%20eyewear%20services." class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+        💬
+    </a>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.closest('.faq-item');
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle current FAQ
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Form submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Form Data:', data);
+            alert('Thank you! We\'ll contact you shortly.');
+            e.target.reset();
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.nav-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
