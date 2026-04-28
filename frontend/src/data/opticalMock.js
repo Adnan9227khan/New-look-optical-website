@@ -1,11 +1,11 @@
-// Mock data for Anas Optical store website
+// Mock data for New Look Opticals store website
 
 export const storeInfo = {
-  name: "Anas Optical",
+  name: "New Look Opticals",
   tagline: "Clear Vision Starts Here",
   subtitle: "Premium Eyeglasses, Contact Lenses & Expert Eye Care Near You",
-  phone: "+917359201616",
-  email: "info@anasoptical.com",
+  phone: "+919173355559",
+  email: "newlookopticals5555@gmail.com",
   address: {
     full: "Al-Hamd Palace, Nanavat Main Road, Near Lakhpati Hospital, Nanavat, Surat, Gujarat – 395003",
     street: "Al-Hamd Palace, Nanavat Main Road",

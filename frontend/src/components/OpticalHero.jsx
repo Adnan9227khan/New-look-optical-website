@@ -11,7 +11,7 @@ export const OpticalHero = () => {
   };
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent(`Hello! I'm interested in your optical services.`);
+    const message = encodeURIComponent(`Hello New Look Opticals! I'm interested in your optical services.`);
     window.open(`https://wa.me/${storeInfo.phone.replace(/\D/g, '')}?text=${message}`, '_blank');
   };
 

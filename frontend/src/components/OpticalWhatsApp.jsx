@@ -11,7 +11,7 @@ export const OpticalWhatsApp = () => {
   }, []);
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Anas Optical! I'm interested in your eyewear services.`
+    `Hello New Look Opticals! I'm interested in your eyewear services.`
   );
   const whatsappUrl = `https://wa.me/${storeInfo.phone.replace(/\D/g, '')}?text=${whatsappMessage}`;
 
