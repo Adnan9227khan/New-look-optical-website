@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Phone, MapPin, Instagram } from 'lucide-react';
 import { storeInfo } from '../data/opticalMock';
 
 export const OpticalFooter = () => {
@@ -95,20 +95,6 @@ export const OpticalFooter = () => {
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors"
-                  aria-label="Twitter"
-                >
-                  <Twitter className="w-4 h-4" />
                 </a>
               </div>
               <p className="text-sm text-blue-200 mt-3">{storeInfo.instagramHandle}</p>

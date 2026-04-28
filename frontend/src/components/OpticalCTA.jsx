@@ -1,15 +1,8 @@
 import React from 'react';
-import { Phone, ArrowRight } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import { storeInfo } from '../data/opticalMock';
 
 export const OpticalCTA = () => {
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-gray-900 text-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -40,13 +33,6 @@ export const OpticalCTA = () => {
             <Phone className="w-6 h-6" />
             Call Now
           </a>
-          <button
-            onClick={scrollToContact}
-            className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-          >
-            Book Appointment
-            <ArrowRight className="w-5 h-5" />
-          </button>
         </div>
 
         {/* Trust Badge */}
