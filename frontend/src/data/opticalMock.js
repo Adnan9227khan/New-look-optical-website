@@ -6,9 +6,11 @@ export const storeInfo = {
   subtitle: "Premium Eyeglasses, Contact Lenses & Expert Eye Care Near You",
   phone: "+919173355559",
   email: "newlookopticals5555@gmail.com",
+  instagram: "https://www.instagram.com/newlookopticals55559/",
+  instagramHandle: "@newlookopticals55559",
   address: {
-    full: "G-1, Ground Floor, Vimalnath Apartment, Nanavat Main Road, Opp. Lakhpati Hospital, Surat, Gujarat – 395003",
-    street: "G-1, Ground Floor, Vimalnath Apartment",
+    full: "Vimalnath Apartment, Opp. Lakhpati Hospital, Nanavat Main Road, Nanavat, Surat, Gujarat – 395003",
+    street: "Vimalnath Apartment",
     landmark: "Opp. Lakhpati Hospital, Nanavat Main Road",
     area: "Nanavat",
     city: "Surat",

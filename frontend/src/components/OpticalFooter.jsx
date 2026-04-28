@@ -88,6 +88,15 @@ export const OpticalFooter = () => {
               <h4 className="font-semibold mb-3 text-blue-300">Follow Us</h4>
               <div className="flex gap-3">
                 <a
+                  href={storeInfo.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+                <a
                   href="#"
                   className="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors"
                   aria-label="Facebook"
@@ -97,18 +106,12 @@ export const OpticalFooter = () => {
                 <a
                   href="#"
                   className="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="p-2 bg-blue-600 hover:bg-blue-700 rounded-full transition-colors"
                   aria-label="Twitter"
                 >
                   <Twitter className="w-4 h-4" />
                 </a>
               </div>
+              <p className="text-sm text-blue-200 mt-3">{storeInfo.instagramHandle}</p>
             </div>
           </div>
         </div>
