@@ -5,8 +5,8 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const OpticalProducts = () => {
   const [productCategories, setProductCategories] = useState([]);
-console.log("BACKEND URL:", BACKEND_URL);
-  useEffect(() => {
+
+  useEffect(() => {console.log("BACKEND URL:", BACKEND_URL);
     const fetchData = async () => {
       try {
         const res = await axios.get(`${BACKEND_URL}/api/products`);
