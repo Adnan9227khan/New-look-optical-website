@@ -5,7 +5,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const OpticalProducts = () => {
   const [productCategories, setProductCategories] = useState([]);
-
+console.log("BACKEND URL:", BACKEND_URL);
   useEffect(() => {
     const fetchData = async () => {
       try {
