@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export const OpticalProducts = () => {
   const [productCategories, setProductCategories] = useState([]);
 
-  useEffect(() => {console.log("BACKEND URL:", BACKEND_URL);
+  useEffect(() => {
     const fetchData = async () => {
       try {
+        if (!BACKEND_URL) {
+          console.log("Backend URL is missing");
+          return;
+        }
+
         const res = await axios.get(`${BACKEND_URL}/api/products`);
-        setProductCategories(res.data);
+
+        if (Array.isArray(res.data)) {
+          setProductCategories(res.data);
+        } else {
+          setProductCategories([]);
+        }
+
       } catch (err) {
         console.log("Error fetching products:", err);
+        setProductCategories([]);
       }
     };
 
@@ -35,7 +47,7 @@ export const OpticalProducts = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {productCategories.map((category) => (
             <div
-              key={category._id}
+              key={category._id || category.id}
               className="group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-white"
             >
               <div className="relative h-64 overflow-hidden">
