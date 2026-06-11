@@ -70,22 +70,34 @@ export const AdminDashboard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const payload = {
+      name: formData.name,
+      category: formData.category,
+      price: Number(formData.price || 0),
+      brand: formData.brand || '',
+      image_url: formData.image_url,
+      description: formData.description || '',
+      in_stock: Boolean(formData.in_stock)
+    };
+
     try {
       if (editingFrame) {
         await axios.put(
-          `${API_BASE}/api/admin/frames/${editingFrame.id ?? editingFrame._id}`,
-          formData,
+          `${API_BASE}/api/frames/${editingFrame.id ?? editingFrame._id}`,
+          payload,
           { headers: getAuthHeader() }
         );
         toast({ title: 'Frame updated successfully!' });
       } else {
         await axios.post(
-          `${API_BASE}/api/admin/frames`,
-          { ...formData, price: parseFloat(formData.price || 0) },
+          `${API_BASE}/api/frames`,
+          payload,
           { headers: getAuthHeader() }
         );
         toast({ title: 'Frame added successfully!' });
       }
+
       resetForm();
       fetchFrames();
     } catch (error) {
@@ -115,7 +127,7 @@ export const AdminDashboard = () => {
     if (!window.confirm('Are you sure you want to delete this frame?')) return;
     try {
       await axios.delete(
-        `${API_BASE}/api/admin/frames/${frameId}`,
+        `${API_BASE}/api/frames/${frameId}`,
         { headers: getAuthHeader() }
       );
       toast({ title: 'Frame deleted successfully!' });
@@ -307,7 +319,7 @@ export const AdminDashboard = () => {
         )}
 
         {/* Frames Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md/grid-cols-2 lg:grid-cols-3 gap-6">
           {(Array.isArray(frames) ? frames : []).map((frame, idx) => (
             <div key={frame.id ?? frame._id ?? idx} className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
