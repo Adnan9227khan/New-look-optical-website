@@ -5,24 +5,13 @@ import { Button } from './ui/button';
 import { useToast } from '../hooks/use-toast';
 import axios from 'axios';
 
-// Decide the API base URL:
-// - Prefer REACT_APP_BACKEND_URL when provided (prod or local).
-// - In dev, fall back to http://localhost:8000.
-// - In prod with no env var, fall back to '' so Netlify proxy (/api/*) is used.
-const rawEnv = process.env.REACT_APP_BACKEND_URL || '';
-let API_BASE_URL = '';
-
-if (rawEnv.trim()) {
-  API_BASE_URL = rawEnv.replace(/\/$/, '');
-} else if (process.env.NODE_ENV === 'development') {
-  API_BASE_URL = 'http://localhost:8000'; // change if your backend dev port is different
-} else {
-  API_BASE_URL = ''; // same-origin (works with Netlify proxy)
-}
+// Use Netlify proxy in production, local backend in development
+const API_BASE_URL =
+  process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000';
 
 // Single axios instance
 const api = axios.create({
-  baseURL: API_BASE_URL, // can be 'https://api...', 'http://localhost:8000', or ''
+  baseURL: API_BASE_URL,
   headers: { 'Content-Type': 'application/json' },
   // withCredentials: true, // ONLY if you use cookies for auth
 });
@@ -40,18 +29,6 @@ export const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
-    // Warn if HTTPS site is calling an HTTP API (only matters when API_BASE_URL is explicit)
-    if (window.location.protocol === 'https:' && API_BASE_URL.startsWith('http://')) {
-      toast({
-        title: 'Misconfiguration',
-        description:
-          'Your site is HTTPS but backend URL is HTTP. Use an HTTPS API URL in REACT_APP_BACKEND_URL or use the Netlify proxy.',
-        variant: 'destructive',
-      });
-      setIsLoading(false);
-      return;
-    }
 
     try {
       const { data } = await api.post('/api/admin/login', formData);
@@ -134,7 +111,6 @@ export const AdminLogin = () => {
             </button>
           </div>
 
-          {/* Debug helper: shows which API base is being used */}
           <p className="mt-4 text-center text-xs text-gray-400">
             API: {API_BASE_URL || '(proxy / same-origin)'}
           </p>
