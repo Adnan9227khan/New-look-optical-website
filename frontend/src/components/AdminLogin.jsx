@@ -5,16 +5,24 @@ import { Button } from './ui/button';
 import { useToast } from '../hooks/use-toast';
 import axios from 'axios';
 
-// 1) Backend URL
-// - For local dev, it will use localhost if no env var is set
-// - In Netlify, set REACT_APP_BACKEND_URL to your real HTTPS API
-const BACKEND_URL =
-  (process.env.REACT_APP_BACKEND_URL && process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '')) ||
-  'http://localhost:8000'; // change default port if your backend runs on 5000
+// Decide the API base URL:
+// - Prefer REACT_APP_BACKEND_URL when provided (prod or local).
+// - In dev, fall back to http://localhost:8000.
+// - In prod with no env var, fall back to '' so Netlify proxy (/api/*) is used.
+const rawEnv = process.env.REACT_APP_BACKEND_URL || '';
+let API_BASE_URL = '';
 
-// 2) Single axios instance
+if (rawEnv.trim()) {
+  API_BASE_URL = rawEnv.replace(/\/$/, '');
+} else if (process.env.NODE_ENV === 'development') {
+  API_BASE_URL = 'http://localhost:8000'; // change if your backend dev port is different
+} else {
+  API_BASE_URL = ''; // same-origin (works with Netlify proxy)
+}
+
+// Single axios instance
 const api = axios.create({
-  baseURL: BACKEND_URL,
+  baseURL: API_BASE_URL, // can be 'https://api...', 'http://localhost:8000', or ''
   headers: { 'Content-Type': 'application/json' },
   // withCredentials: true, // ONLY if you use cookies for auth
 });
@@ -33,11 +41,12 @@ export const AdminLogin = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Helpful checks
-    if (window.location.protocol === 'https:' && BACKEND_URL.startsWith('http://')) {
+    // Warn if HTTPS site is calling an HTTP API (only matters when API_BASE_URL is explicit)
+    if (window.location.protocol === 'https:' && API_BASE_URL.startsWith('http://')) {
       toast({
         title: 'Misconfiguration',
-        description: 'Your site is HTTPS but backend URL is HTTP. Use an HTTPS API URL in REACT_APP_BACKEND_URL.',
+        description:
+          'Your site is HTTPS but backend URL is HTTP. Use an HTTPS API URL in REACT_APP_BACKEND_URL or use the Netlify proxy.',
         variant: 'destructive',
       });
       setIsLoading(false);
@@ -47,7 +56,6 @@ export const AdminLogin = () => {
     try {
       const { data } = await api.post('/api/admin/login', formData);
 
-      // Save token (you’re using token auth, not cookies)
       if (data?.access_token) {
         localStorage.setItem('admin_token', data.access_token);
       }
@@ -126,8 +134,10 @@ export const AdminLogin = () => {
             </button>
           </div>
 
-          {/* Optional: show which backend the app is using (helps debugging) */}
-          <p className="mt-4 text-center text-xs text-gray-400">API: {BACKEND_URL}</p>
+          {/* Debug helper: shows which API base is being used */}
+          <p className="mt-4 text-center text-xs text-gray-400">
+            API: {API_BASE_URL || '(proxy / same-origin)'}
+          </p>
         </div>
       </div>
     </div>
