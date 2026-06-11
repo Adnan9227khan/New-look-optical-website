@@ -21,11 +21,13 @@ export const AdminLogin = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("LOGIN REQUEST TO:", BACKEND_URL);
-console.log("DATA:", formData);
     e.preventDefault();
-    setIsLoading(true);
+  setIsLoading(true);
 
+  console.log("BACKEND URL =", BACKEND_URL);
+  console.log("LOGIN DATA =", formData);
+
+    
     try {
       const response = await axios.post(`${BACKEND_URL}/api/admin/login`, formData);
       
