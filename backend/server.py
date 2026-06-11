@@ -27,7 +27,6 @@ app = FastAPI()
 # API router
 api_router = APIRouter(prefix="/api")
 
-
 # ---------------- MODELS ----------------
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -36,44 +35,41 @@ class StatusCheck(BaseModel):
     client_name: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-
 class StatusCheckCreate(BaseModel):
     client_name: str
-
 
 # ---------------- ROUTES ----------------
 @api_router.get("/")
 async def root():
     return {"message": "New Look Opticals API"}
 
-
 # Import backend routes
 from routes import router as frames_router
 app.include_router(frames_router)
 app.include_router(api_router)
 
-
 # ---------------- CORS FIX ----------------
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://new-look-optical-website.vercel.app",           # production domain
+    "https://newlookoptical.netlify.app",                    # keep if you still use Netlify anywhere
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://newlookoptical.netlify.app",
-        "http://localhost:3000"
-    ],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"https://new-look-optical-website-.*\.vercel\.app",  # preview deployments
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 # ---------------- LOGGING ----------------
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
-
 logger = logging.getLogger(__name__)
-
 
 # ---------------- SHUTDOWN ----------------
 @app.on_event("shutdown")
