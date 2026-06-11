@@ -5,7 +5,7 @@ import { Button } from './ui/button';
 import { useToast } from '../hooks/use-toast';
 import axios from 'axios';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 export const AdminLogin = () => {
   const navigate = useNavigate();
