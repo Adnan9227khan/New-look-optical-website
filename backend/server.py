@@ -10,7 +10,6 @@ from typing import List
 import uuid
 from datetime import datetime, timezone
 
-
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
@@ -25,10 +24,9 @@ app = FastAPI()
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
-
 # Define Models
 class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
+    model_config = ConfigDict(extra="ignore")
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str
@@ -37,27 +35,30 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
-# Add your routes to the router instead of directly to app
+# Root route
 @api_router.get("/")
 async def root():
     return {"message": "New Look Opticals API"}
 
-# Import and include routes from routes.py
+# Include routers
 from routes import router as frames_router
 app.include_router(frames_router)
 
-# Include the router in the main app
 app.include_router(api_router)
 
+# ✅ FIXED CORS (IMPORTANT PART)
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=[
+        "https://newlookoptical.netlify.app",
+        "http://localhost:3000"
+    ],
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Configure logging
+# Logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
