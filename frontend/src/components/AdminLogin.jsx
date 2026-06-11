@@ -5,9 +5,17 @@ import { Button } from './ui/button';
 import { useToast } from '../hooks/use-toast';
 import axios from 'axios';
 
-// Use Netlify proxy in production, local backend in development
-const API_BASE_URL =
-  process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000';
+// Use explicit backend in prod (Render), env if provided, localhost in dev
+const rawEnv = process.env.REACT_APP_BACKEND_URL || '';
+let API_BASE_URL = '';
+
+if (rawEnv.trim()) {
+  API_BASE_URL = rawEnv.replace(/\/$/, '');
+} else if (process.env.NODE_ENV === 'development') {
+  API_BASE_URL = 'http://localhost:8000'; // change if your local port differs
+} else {
+  API_BASE_URL = 'https://new-look-optical-website.onrender.com';
+}
 
 // Single axios instance
 const api = axios.create({
@@ -29,6 +37,17 @@ export const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    // Prevent mixed-content (HTTPS site calling HTTP API)
+    if (window.location.protocol === 'https:' && API_BASE_URL.startsWith('http://')) {
+      toast({
+        title: 'Misconfiguration',
+        description: 'Your site is HTTPS but backend URL is HTTP. Use an HTTPS API URL.',
+        variant: 'destructive',
+      });
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const { data } = await api.post('/api/admin/login', formData);
@@ -111,9 +130,7 @@ export const AdminLogin = () => {
             </button>
           </div>
 
-          <p className="mt-4 text-center text-xs text-gray-400">
-            API: {API_BASE_URL || '(proxy / same-origin)'}
-          </p>
+          <p className="mt-4 text-center text-xs text-gray-400">API: {API_BASE_URL}</p>
         </div>
       </div>
     </div>
