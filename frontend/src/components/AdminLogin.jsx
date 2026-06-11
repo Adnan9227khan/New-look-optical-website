@@ -5,15 +5,24 @@ import { Button } from './ui/button';
 import { useToast } from '../hooks/use-toast';
 import axios from 'axios';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+// 1) Backend URL
+// - For local dev, it will use localhost if no env var is set
+// - In Netlify, set REACT_APP_BACKEND_URL to your real HTTPS API
+const BACKEND_URL =
+  (process.env.REACT_APP_BACKEND_URL && process.env.REACT_APP_BACKEND_URL.replace(/\/$/, '')) ||
+  'http://localhost:8000'; // change default port if your backend runs on 5000
+
+// 2) Single axios instance
+const api = axios.create({
+  baseURL: BACKEND_URL,
+  headers: { 'Content-Type': 'application/json' },
+  // withCredentials: true, // ONLY if you use cookies for auth
+});
 
 export const AdminLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    username: '',
-    password: ''
-  });
+  const [formData, setFormData] = useState({ username: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -22,30 +31,36 @@ export const AdminLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  setIsLoading(true);
+    setIsLoading(true);
 
-  console.log("BACKEND URL =", BACKEND_URL);
-  console.log("LOGIN DATA =", formData);
-
-    
-    try {
-      const response = await axios.post(`${BACKEND_URL}/api/admin/login`, formData);
-      
-      // Store token in localStorage
-      localStorage.setItem('admin_token', response.data.access_token);
-      
+    // Helpful checks
+    if (window.location.protocol === 'https:' && BACKEND_URL.startsWith('http://')) {
       toast({
-        title: "Login Successful!",
-        description: "Welcome to admin dashboard",
+        title: 'Misconfiguration',
+        description: 'Your site is HTTPS but backend URL is HTTP. Use an HTTPS API URL in REACT_APP_BACKEND_URL.',
+        variant: 'destructive',
       });
-      
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const { data } = await api.post('/api/admin/login', formData);
+
+      // Save token (you’re using token auth, not cookies)
+      if (data?.access_token) {
+        localStorage.setItem('admin_token', data.access_token);
+      }
+
+      toast({ title: 'Login Successful!', description: 'Welcome to admin dashboard' });
       navigate('/admin/dashboard');
     } catch (error) {
-      toast({
-        title: "Login Failed",
-        description: error.response?.data?.detail || "Invalid username or password",
-        variant: "destructive"
-      });
+      const msg =
+        error.response?.data?.detail ||
+        error.response?.data?.message ||
+        error.message ||
+        'Invalid username or password';
+      toast({ title: 'Login Failed', description: msg, variant: 'destructive' });
     } finally {
       setIsLoading(false);
     }
@@ -65,9 +80,7 @@ export const AdminLogin = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
-                Username
-              </label>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">Username</label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
@@ -83,9 +96,7 @@ export const AdminLogin = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-900 mb-2">
-                Password
-              </label>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
@@ -110,13 +121,13 @@ export const AdminLogin = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <button
-              onClick={() => navigate('/')}
-              className="text-sm text-blue-600 hover:text-blue-700"
-            >
+            <button onClick={() => navigate('/')} className="text-sm text-blue-600 hover:text-blue-700">
               ← Back to Website
             </button>
           </div>
+
+          {/* Optional: show which backend the app is using (helps debugging) */}
+          <p className="mt-4 text-center text-xs text-gray-400">API: {BACKEND_URL}</p>
         </div>
       </div>
     </div>
