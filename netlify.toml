@@ -3,6 +3,14 @@
   command = "npm run build"
   publish = "build"
 
+# 1. THE PROXY: This solves your CORS error
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-real-backend-url.com/:splat"
+  status = 200
+  force = true
+
+# 2. THE ROUTER: This fixes your page refresh errors
 [[redirects]]
   from = "/*"
   to = "/index.html"
