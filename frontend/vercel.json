@@ -1,0 +1,8 @@
+{
+"rewrites": [
+{
+"source": "/api/:path*",
+"destination": "https://new-look-optical-website.onrender.com/api/:path*"
+}
+]
+}
