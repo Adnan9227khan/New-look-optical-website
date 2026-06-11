@@ -1,8 +1,3 @@
-Here’s the updated file with the write endpoints changed to `/api/admin/frames`.
-
-Replace your `AdminDashboard.jsx` with this:
-
-```jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Edit, Trash2, LogOut, Eye } from 'lucide-react';
@@ -56,6 +51,7 @@ export const AdminDashboard = () => {
 
   const fetchFrames = async () => {
     try {
+      // GET usually stays at /api/frames so public users can see them too
       const { data } = await axios.get(`${API_BASE}/api/frames`);
       setFrames(normalizeFrames(data));
     } catch (error) {
@@ -88,6 +84,7 @@ export const AdminDashboard = () => {
 
     try {
       if (editingFrame) {
+        // Changed to /api/admin/frames
         await axios.put(
           `${API_BASE}/api/admin/frames/${editingFrame.id ?? editingFrame._id}`,
           payload,
@@ -95,6 +92,7 @@ export const AdminDashboard = () => {
         );
         toast({ title: 'Frame updated successfully!' });
       } else {
+        // Changed to /api/admin/frames
         await axios.post(
           `${API_BASE}/api/admin/frames`,
           payload,
@@ -131,6 +129,7 @@ export const AdminDashboard = () => {
   const handleDelete = async (frameId) => {
     if (!window.confirm('Are you sure you want to delete this frame?')) return;
     try {
+      // Changed to /api/admin/frames
       await axios.delete(
         `${API_BASE}/api/admin/frames/${frameId}`,
         { headers: getAuthHeader() }
@@ -167,6 +166,7 @@ export const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Header */}
       <div className="bg-gradient-to-r from-slate-900 to-blue-900 text-white p-6 shadow-lg">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div>
@@ -195,6 +195,7 @@ export const AdminDashboard = () => {
       </div>
 
       <div className="max-w-7xl mx-auto p-6">
+        {/* Add Frame Button */}
         <div className="mb-6">
           <Button
             onClick={() => setShowForm(!showForm)}
@@ -205,6 +206,7 @@ export const AdminDashboard = () => {
           </Button>
         </div>
 
+        {/* Form */}
         {showForm && (
           <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h2 className="text-2xl font-bold mb-6">
@@ -278,6 +280,9 @@ export const AdminDashboard = () => {
                   className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
                   placeholder="https://images.unsplash.com/..."
                 />
+                <p className="text-sm text-gray-500 mt-1">
+                  Get free images from <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Unsplash</a> or <a href="https://pexels.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Pexels</a>
+                </p>
               </div>
 
               <div className="md:col-span-2">
@@ -317,6 +322,7 @@ export const AdminDashboard = () => {
           </div>
         )}
 
+        {/* Frames Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {(Array.isArray(frames) ? frames : []).map((frame, idx) => (
             <div key={frame.id ?? frame._id ?? idx} className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -372,11 +378,3 @@ export const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
-```
-
-Next step:
-- Commit this.
-- Redeploy on Vercel.
-- Try adding a frame again.
-
-If it still gives 405, then we need the exact backend route file (`backend/routes.py`) or the `/docs` screenshot from FastAPI so I can match the correct POST path exactly.
